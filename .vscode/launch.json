@@ -1,0 +1,26 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        // C++ 调试（你现在用的）
+        {
+            "name": "C++ 调试",
+            "type": "cppvsdbg",
+            "request": "launch",
+            "program": "${fileDirname}\\${fileBasenameNoExtension}.exe",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${fileDirname}",
+            "console": "externalTerminal",
+            "preLaunchTask": "C/C++: g++.exe 编译活动文件"
+        },
+        
+        // Python 调试（新版 debugpy 配置）
+        {
+            "name": "Python 调试",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${file}",
+            "console": "integratedTerminal"
+        }
+    ]
+}
