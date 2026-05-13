@@ -1,28 +1,42 @@
-#include<iostream>
+#include<bits/stdc++.h>
 using namespace std;
+#define endl '\n'
+typedef long long ll;
+const int INF = 1e9;
+const int MAX = 5e5+5;
+int a[MAX],tree[MAX];
 int n;
-int ans[15];
-int c[15];
-string s="    ";
-void dfs(int x){
-    if(x>n){
-        for(int i=1;i<=n;i++){
-            cout<<s<<ans[i];
-        }
-        cout<<endl;
-        return;
-    }
-    for(int i=1;i<=n;i++){
-        if(!c[i]){
-        c[i]=1;
-        ans[x]=i;
-        dfs(x+1);
-        ans[x]=0;
-        c[i]=0;
-        }
+int lowbit(int x)
+{
+    return x&-x;
+}
+void change(int x,int y)
+{
+    while(x<=n)
+    {
+        tree[x]+=y;
+        x+=lowbit(x);
     }
 }
-int main(){
+ll query(int x)
+{
+    ll t = 0;
+    while(x)x+=tree[x],x-=lowbit(x);
+    return t;
+}
+int main()
+{
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+    cout.tie(nullptr);
     cin>>n;
-    dfs(1);
+    for(int i = 1;i<=n;i++)
+        cin>>a[i];
+    ll ans = 0;
+    for(int i = n;i>=1;i--)
+    {
+        ans+=query(a[i]);
+        change(a[i],1);
+    }
+    cout<<ans<<endl;
 }
