@@ -18,7 +18,7 @@ int main(){
     }
     int index=0;
     for(int i=s.length()+4-1;i>=0;i--){
-        if(a[ i]!=0){
+        if(a[i]!=0){
             index=i;
             break;
         }
