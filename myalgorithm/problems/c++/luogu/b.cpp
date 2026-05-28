@@ -18,7 +18,7 @@ void solve()
         if(q == d)
             cout << q + max(0LL, k - 1) << '\n';
         else
-            cout << q + k << '\n';
+            cout << q + k << '\n';  
 }
 int main()
 {
