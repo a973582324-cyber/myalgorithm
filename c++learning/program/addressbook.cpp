@@ -9,7 +9,14 @@ struct anyone
     string sex;
     string age;
 };
-
+bool inspectnumber(string number)
+{
+    if(number.length() != 11)
+    {
+        return false;
+    }
+    return true;
+}
 struct people
 {
     int len = 0;
@@ -26,6 +33,11 @@ void add(people &p)
     cin>>p.a[p.len].name;
     cout<<"请输入联系人电话：";
     cin>>p.a[p.len].phone;
+    while(inspectnumber(p.a[p.len].phone) == false)
+    {
+        cout<<"电话号码必须为11位数字,请重新输入"<<endl;
+        cin>>p.a[p.len].phone;
+    }
     cout<<"请输入联系人地址：";
     cin>>p.a[p.len].address;
     cout<<"请输入联系人性别：";
@@ -114,6 +126,11 @@ void changepeople(people &p)
             cin>>p.a[i].name;
             cout<<"请输入新的联系人电话：";
             cin>>p.a[i].phone;
+            while(inspectnumber(p.a[p.len].phone) == false)
+            {
+                cout<<"电话号码必须为11位数字,请重新输入"<<endl;
+                cin>>p.a[p.len].phone;
+            }
             cout<<"请输入新的联系人地址：";
             cin>>p.a[i].address;
             cout<<"请输入新的联系人性别：";

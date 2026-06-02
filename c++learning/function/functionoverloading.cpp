@@ -36,7 +36,7 @@ void func(int a, int b) {
     cout << "func(int a, int b) called with a = " << a << ", b = " << b << endl;
 }
 int main() {
-    func(10); // 调用 func(int a)
+    func(10);// 调用 func(int a)和 func(const int &a)之间存在歧义，因为实参10既可以匹配整数参数，也可以匹配常量整数引用参数，因此会产生编译错误。 
     func(3.14); // 调用 func(double a)
     func(5, 15); // 调用 func(int a, int b)
     return 0;
