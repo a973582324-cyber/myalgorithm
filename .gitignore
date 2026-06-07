@@ -1,4 +1,6 @@
 *.exe
+*.prob
 debug/
 .vscode/
 .cursor/
+.cph/
