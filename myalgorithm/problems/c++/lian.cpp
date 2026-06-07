@@ -5,30 +5,31 @@ typedef long long ll;
 typedef pair<int,int> PII;
 const int INF=0x3f3f3f3f;
 const int N=2e5+5;
+//本题从后到前维护一个单调递减栈（下标），到一个位置将该位置元素与栈顶元素作比较
+//如果大于栈顶元素则出栈，小于先更新答案再入栈
 int main()
 {
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
     int n;
     cin>>n;
-    vector<ll>a(2*n+1),b(2*n+1);
-    vector<int>q(2*n+1);
-    for(int i = 1;i<=n;i++)
-    {
+    vector<ll>a(n);
+    vector<int>q(n);
+    vector<int>ans(n);
+    for(int i = 0;i<n;i++)
         cin>>a[i];
-        if(i!=n)
-        a[i+n] = a[i];
-    }
-    for(int i = 1;i<=2*n-1;i++)
-        b[i] = b[i-1]+a[i];
-    ll ans = 0;
-    int h = 1,t = 0;
-    for(int i = 1;i<=2*n-1;i++)
+    int t = 0;
+    for(int i = n-1;i>=0;i--)
     {
-        while(h<=t&&b[q[t]]>=b[i])t--;
+        while(t>0&&a[i]>=a[q[t]])t--;
+        if(t==0)ans[i] = 0;
+        else
+            ans[i] = q[t];
         q[++t] = i;
-        while(h<=t&&q[h]<i-n+1)h++;
-        if(i>=n&&b[q[h]]-b[i-n]>=0)ans++;
     }
-    cout<<ans<<endl;
+    for(auto t:ans)
+    {
+        cout<<(t==0?0:t+1)<<' ';
+    }
+    return 0;
 }

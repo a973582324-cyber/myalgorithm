@@ -22,7 +22,9 @@ int main(){
     sort(a.begin(),a.end(),cmp);
     int i=0;
     while(1){
-        if(t-a[i].m>0){
+        if(i>=n)
+            break;
+        if(t-a[i].m>=0){
             ans+=a[i].n;
             t-=a[i].m;
         }
@@ -30,8 +32,6 @@ int main(){
             ans+=t*a[i].av;
             break;
         }
-        if(i>=n)
-            break;
         i++;
     }
     printf("%.2lf\n",ans);
