@@ -1,12 +1,11 @@
 #include<iostream>
-#include<iostream>
 using namespace std;
 #define MAXSIZE  100
 typedef int ElemType;
 struct stack
 {
-        ElemType *data;
-        int top;
+    ElemType *data;
+    int top;
 };
 stack* initStack(){
     stack*s = new(stack);

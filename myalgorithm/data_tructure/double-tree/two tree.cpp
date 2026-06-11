@@ -2,6 +2,7 @@
 using namespace std;
 #define MAXSIZE 100
 #define ElemType char
+//给你一个二叉树的数组存储要求给出链式存储并且输出中序遍历的结果
 struct TreeNode
 {
    ElemType data;
@@ -10,7 +11,7 @@ struct TreeNode
 };
 typedef TreeNode* BiTree;
 int index = 0;
-char str[] = "ABDH#K###E##CFI###G#J##";
+char str[] = "ABDH#K###E##CFI###G#J##";//树的数组存储
 void creat(BiTree &T) 
 {
     ElemType ch;
@@ -27,7 +28,7 @@ void creat(BiTree &T)
         creat(T->r); 
     }
 }
-void porder(BiTree &T)
+void porder(BiTree &T)//中序遍历
 {
     if(T == nullptr)
         return;

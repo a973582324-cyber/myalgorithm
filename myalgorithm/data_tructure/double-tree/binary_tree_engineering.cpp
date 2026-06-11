@@ -1,11 +1,11 @@
 /**
- * ¶ş²æÊ÷ ¡ª¡ª ¹¤³Ì´úÂëĞ´·¨
+ * äºŒå‰æ ‘ â€”â€” å·¥ç¨‹ä»£ç å†™æ³•
  *
- * ºÍÄãÖ®Ç°µÄ¾ºÈüĞ´·¨¶Ô±È×Å¿´£¬ºËĞÄÇø±ğ£º
- *   1. Ã»ÓĞÈ«¾Ö±äÁ¿ ¡ª ËùÓĞ×´Ì¬·â×°ÔÚÀàÄÚ²¿
- *   2. ¹¹Ôì/Îö¹¹×Ô¶¯¹ÜÀíÄÚ´æ ¡ª ²»»áĞ¹Â©
- *   3. public/private ¿ØÖÆ·ÃÎÊ ¡ª ²»±©Â¶ÄÚ²¿Ï¸½Ú
- *   4. ½Ó¿ÚÇåÎú ¡ª Íâ²¿Ö»ĞèÖªµÀ"½¨Ê÷"ºÍ"±éÀú"
+ * å’Œä½ ä¹‹å‰çš„ç«èµ›å†™æ³•å¯¹æ¯”ç€çœ‹ï¼Œæ ¸å¿ƒåŒºåˆ«ï¼š
+ *   1. æ²¡æœ‰å…¨å±€å˜é‡ â€” æ‰€æœ‰çŠ¶æ€å°è£…åœ¨ç±»å†…éƒ¨
+ *   2. æ„é€ /ææ„è‡ªåŠ¨ç®¡ç†å†…å­˜ â€” ä¸ä¼šæ³„æ¼
+ *   3. public/private æ§åˆ¶è®¿é—® â€” ä¸æš´éœ²å†…éƒ¨ç»†èŠ‚
+ *   4. æ¥å£æ¸…æ™° â€” å¤–éƒ¨åªéœ€çŸ¥é“"å»ºæ ‘"å’Œ"éå†"
  */
 
 #include <iostream>
@@ -15,7 +15,7 @@ using namespace std;
 
 class BinaryTree {
 private:
-    // ============= ½Úµã¶¨Òå£¨ÄÚ²¿Ê¹ÓÃ£¬Íâ²¿²»ĞèÒªÖªµÀ£©=============
+    // ============= èŠ‚ç‚¹å®šä¹‰ï¼ˆå†…éƒ¨ä½¿ç”¨ï¼Œå¤–éƒ¨ä¸éœ€è¦çŸ¥é“ï¼‰=============
     struct Node {
         char data;
         Node* left;
@@ -24,26 +24,26 @@ private:
         Node(char ch) : data(ch), left(nullptr), right(nullptr) {}
     };
 
-    Node* root;          // Ê÷¸ù£¬Î¨Ò»±©Â¶×´Ì¬µÄÈë¿Ú
-    int nodeCount;       // ½Úµã¸öÊı£¨¸½¼Ó¹¦ÄÜ£©
+    Node* root;          // æ ‘æ ¹ï¼Œå”¯ä¸€æš´éœ²çŠ¶æ€çš„å…¥å£
+    int nodeCount;       // èŠ‚ç‚¹ä¸ªæ•°ï¼ˆé™„åŠ åŠŸèƒ½ï¼‰
 
 public:
-    // ==================== ¹¹ÔìÓëÎö¹¹ ====================
+    // ==================== æ„é€ ä¸ææ„ ====================
     BinaryTree() : root(nullptr), nodeCount(0) {}
 
     ~BinaryTree() {
-        destroy(root);   // RAII£º¶ÔÏóÏú»ÙÊ±×Ô¶¯ÊÍ·ÅËùÓĞ½Úµã
+        destroy(root);   // RAIIï¼šå¯¹è±¡é”€æ¯æ—¶è‡ªåŠ¨é‡Šæ”¾æ‰€æœ‰èŠ‚ç‚¹
     }
 
-    // ==================== ½¨Ê÷£¨¹«ÓĞ½Ó¿Ú£©====================
-    // ´ÓÇ°ĞòĞòÁĞ½¨Ê÷£¨# ±íÊ¾¿Õ½Úµã£©
-    // ÓÃ»§Ö»ĞèÒª´«×Ö·û´®£¬²»ĞèÒª¹Ü index Ö®ÀàµÄ¶«Î÷
+    // ==================== å»ºæ ‘ï¼ˆå…¬æœ‰æ¥å£ï¼‰====================
+    // ä»å‰åºåºåˆ—å»ºæ ‘ï¼ˆ# è¡¨ç¤ºç©ºèŠ‚ç‚¹ï¼‰
+    // ç”¨æˆ·åªéœ€è¦ä¼ å­—ç¬¦ä¸²ï¼Œä¸éœ€è¦ç®¡ index ä¹‹ç±»çš„ä¸œè¥¿
     void buildFromPreorder(const string& str) {
-        int index = 0;               // ¾Ö²¿±äÁ¿£¬²»ÊÇÈ«¾Ö±äÁ¿£¡
+        int index = 0;               // å±€éƒ¨å˜é‡ï¼Œä¸æ˜¯å…¨å±€å˜é‡ï¼
         root = buildRecursive(str, index);
     }
 
-    // ´Ó²ãĞòĞòÁĞ½¨Ê÷£¨# ±íÊ¾¿Õ½Úµã£©¡ª ·Çµİ¹é£¬ÓÃ¶ÓÁĞ
+    // ä»å±‚åºåºåˆ—å»ºæ ‘ï¼ˆ# è¡¨ç¤ºç©ºèŠ‚ç‚¹ï¼‰â€” éé€’å½’ï¼Œç”¨é˜Ÿåˆ—
     void buildFromLevelOrder(const string& str) {
         if (str.empty() || str[0] == '#') {
             root = nullptr;
@@ -53,20 +53,20 @@ public:
         root = new Node(str[0]);
         queue<Node*> q;
         q.push(root);
-        int i = 1;                   // ¾Ö²¿±äÁ¿£¡
+        int i = 1;                   // å±€éƒ¨å˜é‡ï¼
 
         while (!q.empty() && i < (int)str.size()) {
             Node* cur = q.front();
             q.pop();
 
-            // ×óº¢×Ó
+            // å·¦å­©å­
             if (i < (int)str.size() && str[i] != '#') {
                 cur->left = new Node(str[i]);
                 q.push(cur->left);
             }
             i++;
 
-            // ÓÒº¢×Ó
+            // å³å­©å­
             if (i < (int)str.size() && str[i] != '#') {
                 cur->right = new Node(str[i]);
                 q.push(cur->right);
@@ -75,29 +75,29 @@ public:
         }
     }
 
-    // ==================== ËÄÖÖ±éÀú£¨¹«ÓĞ½Ó¿Ú£©====================
+    // ==================== å››ç§éå†ï¼ˆå…¬æœ‰æ¥å£ï¼‰====================
     void preorder() {
-        cout << "Ç°Ğò±éÀú: ";
+        cout << "å‰åºéå†: ";
         preorderRecursive(root);
         cout << endl;
     }
 
     void inorder() {
-        cout << "ÖĞĞò±éÀú: ";
+        cout << "ä¸­åºéå†: ";
         inorderRecursive(root);
         cout << endl;
     }
 
     void postorder() {
-        cout << "ºóĞò±éÀú: ";
+        cout << "ååºéå†: ";
         postorderRecursive(root);
         cout << endl;
     }
 
     void levelOrder() {
-        cout << "²ãĞò±éÀú: ";
+        cout << "å±‚åºéå†: ";
         if (root == nullptr) {
-            cout << "(¿ÕÊ÷)" << endl;
+            cout << "(ç©ºæ ‘)" << endl;
             return;
         }
         queue<Node*> q;
@@ -112,8 +112,8 @@ public:
         cout << endl;
     }
 
-    // ==================== ÆäËû²éÑ¯ ====================
-    int size() const {
+    // ==================== å…¶ä»–æŸ¥è¯¢ ====================
+    int size() const{
         return nodeCount;
     }
 
@@ -126,9 +126,9 @@ public:
     }
 
 private:
-    // ==================== Ë½ÓĞ¸¨Öúº¯Êı£¨Íâ²¿²»¿É¼û£©====================
+    // ==================== ç§æœ‰è¾…åŠ©å‡½æ•°ï¼ˆå¤–éƒ¨ä¸å¯è§ï¼‰====================
 
-    // µİ¹é½¨Ê÷
+    // é€’å½’å»ºæ ‘
     Node* buildRecursive(const string& str, int& index) {
         if (index >= (int)str.size()) return nullptr;
 
@@ -137,12 +137,12 @@ private:
 
         Node* node = new Node(ch);
         nodeCount++;
-        node->left = buildRecursive(str, index);
+        node->left  = buildRecursive(str, index);
         node->right = buildRecursive(str, index);
         return node;
     }
 
-    // µİ¹éÏú»ÙËùÓĞ½Úµã£¨ºóĞò±éÀúË¼Â·£ºÏÈÉ¾º¢×Ó£¬ÔÙÉ¾×Ô¼º£©
+    // é€’å½’é”€æ¯æ‰€æœ‰èŠ‚ç‚¹ï¼ˆååºéå†æ€è·¯ï¼šå…ˆåˆ å­©å­ï¼Œå†åˆ è‡ªå·±ï¼‰
     void destroy(Node* node) {
         if (node == nullptr) return;
         destroy(node->left);
@@ -150,31 +150,31 @@ private:
         delete node;
     }
 
-    // ËÄÖÖ±éÀúµÄµİ¹éÊµÏÖ
+    // å››ç§éå†çš„é€’å½’å®ç°
     void preorderRecursive(Node* node) {
         if (node == nullptr) return;
-        cout << node->data << ' ';       // ¸ù
-        preorderRecursive(node->left);   // ×ó
-        preorderRecursive(node->right);  // ÓÒ
+        cout << node->data << ' ';       // æ ¹
+        preorderRecursive(node->left);   // å·¦
+        preorderRecursive(node->right);  // å³
     }
 
     void inorderRecursive(Node* node) {
         if (node == nullptr) return;
-        inorderRecursive(node->left);    // ×ó
-        cout << node->data << ' ';       // ¸ù
-        inorderRecursive(node->right);   // ÓÒ
+        inorderRecursive(node->left);    // å·¦
+        cout << node->data << ' ';       // æ ¹
+        inorderRecursive(node->right);   // å³
     }
 
     void postorderRecursive(Node* node) {
         if (node == nullptr) return;
-        postorderRecursive(node->left);   // ×ó
-        postorderRecursive(node->right);  // ÓÒ
-        cout << node->data << ' ';        // ¸ù
+        postorderRecursive(node->left);   // å·¦
+        postorderRecursive(node->right);  // å³
+        cout << node->data << ' ';        // æ ¹
     }
 
     int heightRecursive(Node* node) {
         if (node == nullptr) return 0;
-        int leftH = heightRecursive(node->left);
+        int leftH  = heightRecursive(node->left);
         int rightH = heightRecursive(node->right);
         return max(leftH, rightH) + 1;
     }
@@ -186,23 +186,23 @@ private:
     }
 };
 
-// ==================== ²âÊÔ ====================
+// ==================== æµ‹è¯• ====================
 int main() {
-    // Ç°ĞòĞòÁĞ£º# ´ú±í¿Õ½Úµã£¨ºÍÄãµÄ¾ºÈü´úÂëÒ»ÑùµÄ¸ñÊ½£©
+    // å‰åºåºåˆ—ï¼š# ä»£è¡¨ç©ºèŠ‚ç‚¹ï¼ˆå’Œä½ çš„ç«èµ›ä»£ç ä¸€æ ·çš„æ ¼å¼ï¼‰
     string preorderStr = "ABDH#K###E##CFI###G#J##";
 
     BinaryTree tree;
     tree.buildFromPreorder(preorderStr);
 
-    // ËÄÖÖ±éÀú
-    tree.preorder();     // Ç°Ğò: A B D H K E C F I G J
-    tree.inorder();      // ÖĞĞò: H K D B E A I F C G J
-    tree.postorder();    // ºóĞò: K H D E B I F J G C A
-    tree.levelOrder();   // ²ãĞò: A B C D E F G H I J K
+    // å››ç§éå†
+    tree.preorder();     // å‰åº: A B D H K E C F I G J
+    tree.inorder();      // ä¸­åº: H K D B E A I F C G J
+    tree.postorder();    // ååº: K H D E B I F J G C A
+    tree.levelOrder();   // å±‚åº: A B C D E F G H I J K
 
-    cout << "½Úµã×ÜÊı: " << tree.size() << endl;
-    cout << "Ê÷µÄ¸ß¶È: " << tree.height() << endl;
-    cout << "Ò¶×ÓÊıÁ¿: " << tree.leafCount() << endl;
+    cout << "èŠ‚ç‚¹æ€»æ•°: " << tree.size() << endl;
+    cout << "æ ‘çš„é«˜åº¦: " << tree.height() << endl;
+    cout << "å¶å­æ•°é‡: " << tree.leafCount() << endl;
 
     return 0;
 }

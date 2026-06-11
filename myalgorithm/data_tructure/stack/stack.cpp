@@ -4,8 +4,8 @@ using namespace std;
 typedef int ElemType;
 struct stack
 {
-        ElemType data[MAXSIZE];
-        int top;
+    ElemType data[MAXSIZE];
+    int top;
 };
 void initStack(stack *s){
     s->top = -1;
